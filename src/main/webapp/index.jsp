@@ -16,7 +16,7 @@
 
         <ul class="flex-1">
             <a href="employee.jsp">
-                <li class="px-4 py-3 flex items-center justify-start space-x-4 text-indigo-300">
+                <li class="px-4 py-3 flex items-center justify-start space-x-4 hover:text-indigo-300">
                     <img src="resources/Employees.png" alt="Employees" class="h-8 w-auto">
                     <span class="text-lg">Employees</span>
                 </li>
@@ -42,7 +42,7 @@
         </ul>
 
         <div class="p-4">
-            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 w-full rounded-md transition duration-300">Logout</button>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 w-full rounded-md transition duration-300 hidden">Logout</button>
         </div>
     </div>
 

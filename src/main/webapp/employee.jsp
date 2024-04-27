@@ -41,7 +41,7 @@
         </ul>
 
         <div class="p-4">
-            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 w-full rounded-md transition duration-300">Logout</button>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 w-full rounded-md transition duration-300 hidden">Logout</button>
         </div>
     </div>
 
