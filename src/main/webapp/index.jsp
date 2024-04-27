@@ -15,7 +15,7 @@
         </div>
 
         <ul class="flex-1">
-            <a href="employee.jsp">
+            <a href="employees">
                 <li class="px-4 py-3 flex items-center justify-start space-x-4 hover:text-indigo-300">
                     <img src="resources/Employees.png" alt="Employees" class="h-8 w-auto">
                     <span class="text-lg">Employees</span>
@@ -33,7 +33,7 @@
                     <span class="text-lg">Localisations</span>
                 </li>
             </a>
-            <a href="#">
+            <a href="departements">
                 <li class="px-4 py-3 flex items-center justify-start space-x-4 hover:text-indigo-300">
                     <img src="resources/Departments.png" alt="Departments" class="h-8 w-auto">
                     <span class="text-lg">Departments</span>

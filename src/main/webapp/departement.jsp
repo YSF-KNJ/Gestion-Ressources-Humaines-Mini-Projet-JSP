@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employees Management</title>
+    <title>Deoartements Management</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
@@ -15,7 +15,7 @@
         </div>
         <ul class="flex-1">
             <a href="employees">
-                <li class="px-4 py-3 flex items-center justify-start space-x-4 text-indigo-300">
+                <li class="px-4 py-3 flex items-center justify-start space-x-4 hover:text-indigo-300">
                     <img src="resources/Employees.png" alt="Employees" class="h-8 w-auto">
                     <span class="text-lg">Employees</span>
                 </li>
@@ -33,7 +33,7 @@
                 </li>
             </a>
             <a href="departements">
-                <li class="px-4 py-3 flex items-center justify-start space-x-4 hover:text-indigo-300">
+                <li class="px-4 py-3 flex items-center justify-start space-x-4 text-indigo-300">
                     <img src="resources/Departments.png" alt="Departments" class="h-8 w-auto">
                     <span class="text-lg">Departments</span>
                 </li>
@@ -47,6 +47,19 @@
 
     <div id="content" class="flex-1 p-8">
         <h1 class="text-2xl font-bold">Departments Management</h1>
+        <div class="mt-8">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-4 flex justify-between items-center">
+                <div>
+                    <h2 class="text-lg font-semibold">Department ID: 12345</h2>
+                    <p class="text-gray-600">Department Name: Marketing</p>
+                    <p class="text-gray-600">Location ID: 54321</p>
+                </div>
+                <div>
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition duration-300">Edit</button>
+                    <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md transition duration-300">Delete</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

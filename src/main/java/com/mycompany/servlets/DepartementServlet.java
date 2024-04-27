@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-@WebServlet(name = "employeesServlet", value = "/employees")
-public class EmployeesServlet extends HttpServlet {
+@WebServlet(name = "departementsServlet", value = "/departements")
+public class DepartementServlet extends HttpServlet {
     private String message;
 
     public void init() {
@@ -19,7 +19,7 @@ public class EmployeesServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/employee.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/departement.jsp");
         dispatcher.forward(request, response);
     }
 
