@@ -13,7 +13,6 @@
         <div class="flex items-center justify-center p-4">
             <img src="resources/management.png" alt="Logo" class="h-12 w-auto">
         </div>
-
         <ul class="flex-1">
             <a href="employee.jsp">
                 <li class="px-4 py-3 flex items-center justify-start space-x-4 text-indigo-300">

@@ -1,4 +1,4 @@
-package com.example.gestionressourceshumaines;
+package com.mycompany.servlets;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
