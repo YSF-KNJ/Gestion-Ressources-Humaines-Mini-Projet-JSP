@@ -21,8 +21,6 @@ public class SigninServlet extends HttpServlet {
         String password = request.getParameter("password").trim();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("Username: " + username);
-            System.out.println("Password: " + password);
             if (Admin.checkLogin(username, password)) {
                 HttpSession session = request.getSession();
                 int userId = Admin.getAdminId(username);

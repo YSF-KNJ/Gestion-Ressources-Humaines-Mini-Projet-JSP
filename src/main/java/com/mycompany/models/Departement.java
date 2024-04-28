@@ -89,7 +89,8 @@ public class Departement {
         return data;
     }
 
-    public static List<String[]> getDepartmentDataList(int AdminId) throws SQLException {
+    public static List<String[]> getDepartmentDataList(int AdminId) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         List<String[]> data = new ArrayList<>();
         String query = "SELECT * FROM departement WHERE id_admin = ?";
 
