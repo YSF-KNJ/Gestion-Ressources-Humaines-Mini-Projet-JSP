@@ -17,6 +17,9 @@ public class Departement {
     private final String nom_Departement;
     private final int id_localisation;
 
+    public static void replaceDepartementWithNull(int id) {
+    }
+
 
     public int getId() {
         return id;

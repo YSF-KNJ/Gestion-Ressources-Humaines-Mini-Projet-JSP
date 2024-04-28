@@ -3,7 +3,6 @@ package com.mycompany.servlets;
 import com.mycompany.models.Createdb;
 import com.mycompany.models.Createtables;
 import com.mycompany.models.Departement;
-import com.mycompany.models.InsertValues;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,23 +25,23 @@ public class DepartementServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        HttpSession session = request.getSession(false); // Passing false to prevent the creation of a new session if it doesn't exist
-
+        HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("userId") != null) {
-            String userId = String.valueOf(session.getAttribute("userId")); // Using String.valueOf()
+            String userId = String.valueOf(session.getAttribute("userId"));
             try {
                 Createdb.createdb();
                 Createtables.createtables();
-                int intUserId = (int) session.getAttribute("userId");
-                data = Departement.getDepartmentDataList(intUserId);
+                data = Departement.getDepartmentDataList();
                 request.setAttribute("departments", data);
                 request.getRequestDispatcher("/departement.jsp").forward(request, response);
             } catch (ClassNotFoundException | SQLException e) {
                 throw new RuntimeException(e);
             }
+
         } else {
             response.sendRedirect(request.getContextPath() + "/");
         }
+
 
     }
 

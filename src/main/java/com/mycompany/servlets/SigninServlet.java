@@ -15,8 +15,7 @@ import java.sql.SQLException;
 public class SigninServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("login").trim();
         String password = request.getParameter("password").trim();
         try {
@@ -31,8 +30,7 @@ public class SigninServlet extends HttpServlet {
                 request.setAttribute("errorMessage", errorMessage);
                 request.getRequestDispatcher("/").forward(request, response);
             }
-        }
-        catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             response.sendRedirect(request.getContextPath() + "/");
             e.printStackTrace();
         }

@@ -48,7 +48,6 @@ public class Employe {
     }
 
 
-
     public static String[][] getEmployeesData() throws SQLException {
         String[][] data = null;
         String query = "SELECT * FROM employes";
@@ -131,8 +130,6 @@ public class Employe {
     }
 
 
-
-
     public static void updateEmploye(int id, String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement, int id_manager) throws SQLException {
         Connection conct = null;
         if (checkID(id)) {
@@ -207,6 +204,8 @@ public class Employe {
         return bool;
     }
 
+
+
     public static void replaceManager(int newManagerId, int oldManagerId) throws SQLException {
         Connection conct = null;
         try {
@@ -278,6 +277,27 @@ public class Employe {
         } catch (SQLException e) {
             System.out.println("Une erreur s'est produite");
             return 0;
+        }
+    }
+
+    public static void replaceDepartementWithNull(int id_departement) throws SQLException, ClassNotFoundException {
+
+        Connection conct = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String query = "UPDATE employes SET id_departement = null WHERE id_departement = ?";
+            conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
+            PreparedStatement stmt = conct.prepareStatement(query);
+            stmt.setInt(1, id_departement);
+            stmt.executeUpdate();
+            conct.commit();
+            conct.close();
+        } catch (SQLException | ClassNotFoundException e) {
+            if (conct != null) {
+                conct.rollback();
+                throw e;
+            }
         }
     }
 
@@ -423,6 +443,10 @@ public class Employe {
 
     public Integer getIdManager() {
         return this.id_manager;
+    }
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+
     }
 
 }

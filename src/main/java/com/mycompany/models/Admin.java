@@ -49,7 +49,7 @@ public class Admin {
     }
 
     public static void main(String[] args) throws SQLException {
-        //addAdmin("admin","admin","admin","admin");
+        addAdmin("admin","admin","admin","admin");
     }
 }
 
