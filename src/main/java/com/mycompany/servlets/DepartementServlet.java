@@ -43,6 +43,7 @@ public class DepartementServlet extends HttpServlet {
         try {
             Createdb.createdb();
             Createtables.createtables();
+            InsertValues.insert();
             data = Departement.getDepartmentDataList();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);

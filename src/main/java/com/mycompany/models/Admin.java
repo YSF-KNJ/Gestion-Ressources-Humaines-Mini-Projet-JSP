@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static com.mycompany.models.MySQLConnector.getConnection;
+
 public class Admin {
     public static void addAdmin(String firstName, String lastName, String email, String password) throws SQLException {
         String Query = "INSERT INTO admin (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
-        Connection conct = MySQLConnector.getConnection();
+        Connection conct = getConnection();
         conct.setAutoCommit(false);
         PreparedStatement stmt = conct.prepareStatement(Query);
         stmt.setString(1, firstName);
@@ -22,7 +24,7 @@ public class Admin {
 
     public static boolean checkLogin(String email, String password) throws SQLException {
         String Query = "SELECT * FROM admin WHERE email = ? AND password = ?";
-        Connection conct = MySQLConnector.getConnection();
+        Connection conct = getConnection();
         PreparedStatement stmt = conct.prepareStatement(Query);
         stmt.setString(1, email);
         stmt.setString(2, password);
@@ -30,6 +32,11 @@ public class Admin {
         boolean result = resultSet.next();
         conct.close();
         return result;
+    }
+
+    public static void main(String[] args) throws SQLException {
+        //addAdmin("admin","admin","admin","admin");
+        System.out.println(Admin.checkLogin("admin", "hh"));
     }
 }
 

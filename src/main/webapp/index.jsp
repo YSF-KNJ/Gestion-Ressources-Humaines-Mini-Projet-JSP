@@ -4,63 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Departments Management</title>
+    <title>Index Page</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
-<div class="flex h-screen">
-    <div id="sidebar" class="w-64 bg-indigo-600 text-white flex flex-col justify-between">
-        <div class="flex items-center justify-center p-4">
-            <img src="resources/management.png" alt="Logo" class="h-12 w-auto">
-        </div>
-
-        <ul class="flex-1">
-            <a href="employees">
-                <li class="px-4 py-3 flex items-center justify-start space-x-4 hover:text-indigo-300">
-                    <img src="resources/Employees.png" alt="Employees" class="h-8 w-auto">
-                    <span class="text-lg">Employees</span>
-                </li>
-            </a>
-            <a href="#">
-                <li class="px-4 py-3 flex items-center justify-start space-x-4 hover:text-indigo-300">
-                    <img src="resources/Posts.png" alt="Posts" class="h-8 w-auto">
-                    <span class="text-lg">Posts</span>
-                </li>
-            </a>
-            <a href="#">
-                <li class="px-4 py-3 flex items-center justify-start space-x-4 hover:text-indigo-300">
-                    <img src="resources/Localisation.png" alt="Localisations" class="h-8 w-auto">
-                    <span class="text-lg">Localisations</span>
-                </li>
-            </a>
-            <a href="departements">
-                <li class="px-4 py-3 flex items-center justify-start space-x-4 hover:text-indigo-300">
-                    <img src="resources/Departments.png" alt="Departments" class="h-8 w-auto">
-                    <span class="text-lg">Departments</span>
-                </li>
-            </a>
-        </ul>
-
-        <div class="p-4">
-            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 w-full rounded-md transition duration-300 hidden">Logout</button>
-        </div>
+<body class="bg-indigo-500 flex justify-center items-center h-screen">
+<div class="flex justify-between">
+    <!-- Sign In Box -->
+    <div class="w-80 bg-white p-8 rounded-lg shadow-md mb-8 mr-3">
+        <h2 class="text-2xl font-semibold mb-4">Sign In</h2>
+        <form action="signinServlet" method="POST">
+            <div class="mb-4">
+                <label for="login" class="block mb-1">Username</label>
+                <input type="text" id="login" name="login" class="w-full px-3 py-2 border rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block mb-1">Password</label>
+                <input type="password" id="password" name="password" class="w-full px-3 py-2 border rounded-md">
+            </div>
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Sign In</button>
+        </form>
     </div>
 
-    <div id="content" class="flex-1 p-8">
-        <h1 class="text-2xl font-bold">Departments Management</h1>
-        <div class="mt-8">
-            <div class="bg-white rounded-lg shadow-md p-6 mb-4 flex justify-between items-center">
-                <div>
-                    <h2 class="text-lg font-semibold">Department ID: 12345</h2>
-                    <p class="text-gray-600">Department Name: Marketing</p>
-                    <p class="text-gray-600">Location ID: 54321</p>
-                </div>
-                <div>
-                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition duration-300">Edit</button>
-                    <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md transition duration-300">Delete</button>
-                </div>
+    <!-- Sign Up Box -->
+    <div class="w-80 bg-white p-8 rounded-lg shadow-md mb-8 ml-3">
+        <h2 class="text-2xl font-semibold mb-4">Sign Up</h2>
+        <form action="signupServlet" method="POST">
+            <div class="mb-4">
+                <label for="first_name" class="block mb-1">First Name</label>
+                <input type="text" id="first_name" name="first_name" class="w-full px-3 py-2 border rounded-md">
             </div>
-        </div>
+            <div class="mb-4">
+                <label for="last_name" class="block mb-1">Last Name</label>
+                <input type="text" id="last_name" name="last_name" class="w-full px-3 py-2 border rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="signup_login" class="block mb-1">Username</label>
+                <input type="text" id="signup_login" name="signup_login" class="w-full px-3 py-2 border rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="signup_password" class="block mb-1">Password</label>
+                <input type="password" id="signup_password" name="signup_password" class="w-full px-3 py-2 border rounded-md">
+            </div>
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Sign Up</button>
+        </form>
     </div>
 </div>
 </body>
