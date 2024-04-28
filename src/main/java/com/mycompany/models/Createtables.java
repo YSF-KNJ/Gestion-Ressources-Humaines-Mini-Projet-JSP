@@ -5,7 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Createtables {
-    public static void createtables() throws SQLException {
+    public static void createtables() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conct = MySQLConnector.getConnection();
         Statement stmt = conct.createStatement();
         String createAdminTable = "CREATE TABLE IF NOT EXISTS admin ("

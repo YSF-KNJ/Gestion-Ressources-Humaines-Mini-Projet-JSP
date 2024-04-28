@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-100">
 <div class="flex h-screen">
-    <div id="sidebar" class="w-64 bg-indigo-600 text-white flex flex-col justify-between">
+    <div id="sidebar" class="w-64 bg-indigo-600 text-white flex flex-col justify-between fixed top-0 bottom-0 overflow-y-auto">
         <div class="flex items-center justify-center p-4">
             <img src="resources/management.png" alt="Logo" class="h-12 w-auto">
         </div>
@@ -41,25 +41,51 @@
         </ul>
 
         <div class="p-4">
-            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 w-full rounded-md transition duration-300 hidden">Logout</button>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 w-full rounded-md transition duration-300 hidden">
+                Logout
+            </button>
         </div>
     </div>
 
-    <div id="content" class="flex-1 p-8">
+    <div id="content" class="flex-1 p-8 ml-64">
         <h1 class="text-2xl font-bold">Departments Management</h1>
+
+
+        <%
+            // Accessing the array from the request attribute
+            String[][] departments = (String[][]) request.getAttribute("departments");
+            for (String[] department : departments) {
+        %>
+
         <div class="mt-8">
             <div class="bg-white rounded-lg shadow-md p-6 mb-4 flex justify-between items-center">
-                <div>
-                    <h2 class="text-lg font-semibold">Department ID: 12345</h2>
-                    <p class="text-gray-600">Department Name: Marketing</p>
-                    <p class="text-gray-600">Location ID: 54321</p>
+                <div class="mb-2">
+                    <h2 class="text-lg font-semibold">Department ID: <%= department[0] %>
+                    </h2>
+                    <p class="text-gray-600">Department Name: <%= department[1] %>
+                    </p>
+                    <p class="text-gray-600">Location ID: <%= department[2] %>
+                    </p>
                 </div>
                 <div>
-                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition duration-300">Edit</button>
-                    <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md transition duration-300">Delete</button>
+                    <form action="editDepartment" method="post">
+                        <input type="hidden" name="departmentId" value="<%= department[0] %>">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition duration-300">
+                            Edit
+                        </button>
+                    </form>
+                    <div class="mr-4"></div>
+                    <form action="deleteDepartment" method="post" onsubmit="return confirm('Are you sure you want to delete this department?');">
+                        <input type="hidden" name="departmentId" value="<%= department[0] %>">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition duration-300">
+                            Delete
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
+        <% } %>
+
     </div>
 </div>
 </body>

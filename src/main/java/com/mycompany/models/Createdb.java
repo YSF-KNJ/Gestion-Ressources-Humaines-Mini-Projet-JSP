@@ -13,7 +13,8 @@ public class Createdb {
     private static final String nomConnexion = "root";  // dépend du contexte
     private static final String motDePasse = "root";  // dépend du contexte
 
-    public static void createdb() throws SQLException {
+    public static void createdb() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conct = DriverManager.getConnection(conString, nomConnexion, motDePasse);
         Statement stmt = conct.createStatement();
         stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS HR;");
