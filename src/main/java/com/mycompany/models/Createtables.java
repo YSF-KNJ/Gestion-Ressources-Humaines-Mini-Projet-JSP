@@ -22,7 +22,7 @@ public class Createtables {
                 + "id_poste INT NOT NULL PRIMARY KEY AUTO_INCREMENT,"
                 + "titre_poste VARCHAR(255),"
                 + "id_admin INT,"
-                + "FOREIGN KEY (id_admin) REFERENCES localisation(id_localisation)"
+                + "FOREIGN KEY (id_admin) REFERENCES admin(id_admin)"
                 + ")";
         stmt.executeUpdate(createPosteTable);
 
@@ -31,7 +31,7 @@ public class Createtables {
                 + "adresse VARCHAR(255),"
                 + "ville VARCHAR(255),"
                 + "id_admin INT,"
-                + "FOREIGN KEY (id_admin) REFERENCES localisation(id_localisation)"
+                + "FOREIGN KEY (id_admin) REFERENCES admin(id_admin)"
                 + ")";
         stmt.executeUpdate(createLocalisationTable);
 
@@ -42,7 +42,7 @@ public class Createtables {
                 + "id_localisation INT,"
                 + "FOREIGN KEY (id_localisation) REFERENCES localisation(id_localisation),"
                 + "id_admin INT,"
-                + "FOREIGN KEY (id_admin) REFERENCES localisation(id_localisation)"
+                + "FOREIGN KEY (id_admin) REFERENCES admin(id_admin)"
                 + ")";
         stmt.executeUpdate(createDepartementTable);
 
@@ -59,7 +59,7 @@ public class Createtables {
                 + "FOREIGN KEY (id_poste) REFERENCES poste(id_poste),"
                 + "FOREIGN KEY (id_departement) REFERENCES departement(id_departement),"
                 + "id_admin INT,"
-                + "FOREIGN KEY (id_admin) REFERENCES localisation(id_localisation)"
+                + "FOREIGN KEY (id_admin) REFERENCES admin(id_admin)"
                 + ")";
         stmt.executeUpdate(createEmployesTable);
         conct.close();
