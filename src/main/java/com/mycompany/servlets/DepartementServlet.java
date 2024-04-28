@@ -29,12 +29,12 @@ public class DepartementServlet extends HttpServlet {
         HttpSession session = request.getSession(false); // Passing false to prevent the creation of a new session if it doesn't exist
 
         if (session != null && session.getAttribute("userId") != null) {
-            String userId = (String) session.getAttribute("userId");
+            String userId = String.valueOf(session.getAttribute("userId")); // Using String.valueOf()
             try {
                 Createdb.createdb();
                 Createtables.createtables();
-                InsertValues.insert();
-                data = Departement.getDepartmentDataList();
+                int intUserId = (int) session.getAttribute("userId");
+                data = Departement.getDepartmentDataList(intUserId);
                 request.setAttribute("departments", data);
                 request.getRequestDispatcher("/departement.jsp").forward(request, response);
             } catch (ClassNotFoundException | SQLException e) {

@@ -38,7 +38,7 @@ public class Departement {
 
     public static String[][] getDepartementData() throws SQLException {
         String[][] data = null;
-        String query = "SELECT * FROM localisation";
+        String query = "SELECT * FROM departement";
         Connection conct = MySQLConnector.getConnection();
         PreparedStatement stmt = conct.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ResultSet resultSet = stmt.executeQuery();
@@ -68,7 +68,7 @@ public class Departement {
 
     public static List<String[]> getDepartmentDataList() throws SQLException {
         List<String[]> data = new ArrayList<>();
-        String query = "SELECT * FROM localisation";
+        String query = "SELECT * FROM departement";
 
         try (Connection connection = MySQLConnector.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
@@ -88,6 +88,34 @@ public class Departement {
 
         return data;
     }
+
+    public static List<String[]> getDepartmentDataList(int AdminId) throws SQLException {
+        List<String[]> data = new ArrayList<>();
+        String query = "SELECT * FROM departement WHERE id_admin = ?";
+
+        try (Connection connection = MySQLConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, AdminId); // Set the AdminId parameter in the query
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                ResultSetMetaData metaData = resultSet.getMetaData();
+                int columnCount = metaData.getColumnCount();
+
+                while (resultSet.next()) {
+                    String[] row = new String[columnCount];
+                    for (int i = 1; i <= columnCount; i++) {
+                        row[i - 1] = resultSet.getString(i);
+                    }
+                    data.add(row);
+                }
+            }
+        }
+
+        return data;
+    }
+
+
 
 
 
