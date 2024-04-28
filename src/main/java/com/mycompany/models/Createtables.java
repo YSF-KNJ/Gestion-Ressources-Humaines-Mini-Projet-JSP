@@ -20,14 +20,18 @@ public class Createtables {
 
         String createPosteTable = "CREATE TABLE IF NOT EXISTS poste ("
                 + "id_poste INT NOT NULL PRIMARY KEY AUTO_INCREMENT,"
-                + "titre_poste VARCHAR(255)"
+                + "titre_poste VARCHAR(255),"
+                + "id_admin INT,"
+                + "FOREIGN KEY (id_admin) REFERENCES localisation(id_localisation)"
                 + ")";
         stmt.executeUpdate(createPosteTable);
 
         String createLocalisationTable = "CREATE TABLE IF NOT EXISTS localisation ("
                 + "id_localisation INT NOT NULL PRIMARY KEY AUTO_INCREMENT,"
                 + "adresse VARCHAR(255),"
-                + "ville VARCHAR(255)"
+                + "ville VARCHAR(255),"
+                + "id_admin INT,"
+                + "FOREIGN KEY (id_admin) REFERENCES localisation(id_localisation)"
                 + ")";
         stmt.executeUpdate(createLocalisationTable);
 
@@ -36,7 +40,9 @@ public class Createtables {
                 + "id_departement INT NOT NULL PRIMARY KEY AUTO_INCREMENT,"
                 + "nom_departement VARCHAR(255),"
                 + "id_localisation INT,"
-                + "FOREIGN KEY (id_localisation) REFERENCES localisation(id_localisation)"
+                + "FOREIGN KEY (id_localisation) REFERENCES localisation(id_localisation),"
+                + "id_admin INT,"
+                + "FOREIGN KEY (id_admin) REFERENCES localisation(id_localisation)"
                 + ")";
         stmt.executeUpdate(createDepartementTable);
 
@@ -52,7 +58,8 @@ public class Createtables {
                 + "id_manager INT,"
                 + "FOREIGN KEY (id_poste) REFERENCES poste(id_poste),"
                 + "FOREIGN KEY (id_departement) REFERENCES departement(id_departement),"
-                + "FOREIGN KEY (id_manager) REFERENCES employes(id_employe)"
+                + "id_admin INT,"
+                + "FOREIGN KEY (id_admin) REFERENCES localisation(id_localisation)"
                 + ")";
         stmt.executeUpdate(createEmployesTable);
         conct.close();
