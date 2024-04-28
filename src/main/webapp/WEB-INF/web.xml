@@ -3,4 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+    <servlet>
+        <servlet-name>EditDepartmentServlet</servlet-name>
+        <servlet-class>com.mycompany.servlets.EditDepartmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditDepartmentServlet</servlet-name>
+        <url-pattern>/editDepartment</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteDepartmentServlet</servlet-name>
+        <servlet-class>com.mycompany.servlets.DeleteDepartmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteDepartmentServlet</servlet-name>
+        <url-pattern>/deleteDepartment</url-pattern>
+    </servlet-mapping>
+
 </web-app>

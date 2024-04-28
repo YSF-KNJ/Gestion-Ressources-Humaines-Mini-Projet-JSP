@@ -59,31 +59,31 @@
 
         <div class="mt-8">
             <div class="bg-white rounded-lg shadow-md p-6 mb-4 flex justify-between items-center">
-                <div class="mb-2">
-                    <h2 class="text-lg font-semibold">Department ID: <%= department[0] %>
-                    </h2>
-                    <p class="text-gray-600">Department Name: <%= department[1] %>
-                    </p>
-                    <p class="text-gray-600">Location ID: <%= department[2] %>
-                    </p>
-                </div>
                 <div>
-                    <form action="editDepartment" method="post">
+                    <h2 class="text-lg font-semibold">Department ID: <%= department[0] %></h2>
+                    <p class="text-gray-600">Department Name: <%= department[1] %></p>
+                    <p class="text-gray-600">Location ID: <%= department[2] %></p>
+                </div>
+
+                <div class="flex items-center">
+                    <form class="inline-block" action="deleteDepartment" method="post" onsubmit="return confirm('Are you sure you want to delete this department?');">
+                        <input type="hidden" name="departmentId" value="<%= department[0] %>">
+                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md transition duration-300">
+                            Delete
+                        </button>
+                    </form>
+                    <form class="inline-block ml-2" action="editDepartment" method="post">
                         <input type="hidden" name="departmentId" value="<%= department[0] %>">
                         <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition duration-300">
                             Edit
                         </button>
                     </form>
-                    <div class="mr-4"></div>
-                    <form action="deleteDepartment" method="post" onsubmit="return confirm('Are you sure you want to delete this department?');">
-                        <input type="hidden" name="departmentId" value="<%= department[0] %>">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition duration-300">
-                            Delete
-                        </button>
-                    </form>
                 </div>
+
             </div>
         </div>
+
+
         <% } %>
 
     </div>
