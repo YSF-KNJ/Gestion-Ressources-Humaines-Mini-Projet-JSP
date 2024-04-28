@@ -3,6 +3,7 @@ package com.mycompany.servlets;
 import com.mycompany.models.Createdb;
 import com.mycompany.models.Createtables;
 import com.mycompany.models.Departement;
+import com.mycompany.models.InsertValues;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,27 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @WebServlet(name = "departementsServlet", value = "/departements")
 public class DepartementServlet extends HttpServlet {
-    private String message;
-
+    public static List<String[]> data = new ArrayList<>();
     public void init() {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        /*
-        String[][] departments = new String[0][];
-        try {
-            Createdb.createdb();
-            Createtables.createtables();
-            departments = Departement.getDepartements();
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-        }
 
-         */
+        /*
         String[][] departments;
         // dummy data
         departments = new String[][]{
@@ -41,11 +34,22 @@ public class DepartementServlet extends HttpServlet {
                 {"4", "Marketing", "4"},
                 {"5", "Vente", "5"},
         };
-        request.setAttribute("departments", departments);
+        *§
+         */
+
+
+
+
+        try {
+            Createdb.createdb();
+            Createtables.createtables();
+            data = Departement.getDepartmentDataList();
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+        request.setAttribute("departments", data);
 
         request.getRequestDispatcher("/departement.jsp").forward(request, response);
     }
 
-    public void destroy() {
-    }
 }

@@ -19,7 +19,7 @@ public class EmployeesServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/employee.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/");
         dispatcher.forward(request, response);
     }
 

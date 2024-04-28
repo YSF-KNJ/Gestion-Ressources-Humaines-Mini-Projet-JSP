@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +54,7 @@
 
         <%
             // Accessing the array from the request attribute
-            String[][] departments = (String[][]) request.getAttribute("departments");
+            List<String[]> departments = (List<String[]>) request.getAttribute("departments");
             for (String[] department : departments) {
         %>
 

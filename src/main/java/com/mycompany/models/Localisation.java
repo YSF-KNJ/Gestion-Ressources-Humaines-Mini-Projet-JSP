@@ -80,7 +80,7 @@ public class Localisation {
             if (rs.next()) {
                 return rs.getInt("max_id");
             } else {
-                System.out.println("Unable to retrieve the last row id from the localisation table");
+                System.out.println("unable to retrieve the last row id from the localisation table");
                 return 0;
             }
         } catch (SQLException e) {
@@ -265,5 +265,6 @@ public class Localisation {
         workbook.close();
         conct.close();
     }
+
 
 }
