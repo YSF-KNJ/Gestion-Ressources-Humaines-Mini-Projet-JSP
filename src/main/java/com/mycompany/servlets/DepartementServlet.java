@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,38 +20,30 @@ import java.util.List;
 @WebServlet(name = "departementsServlet", value = "/departements")
 public class DepartementServlet extends HttpServlet {
     public static List<String[]> data = new ArrayList<>();
+
     public void init() {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        /*
-        String[][] departments;
-        // dummy data
-        departments = new String[][]{
-                {"1", "Informatique", "1"},
-                {"2", "Ressources Humaines", "2"},
-                {"3", "Comptabilité", "3"},
-                {"4", "Marketing", "4"},
-                {"5", "Vente", "5"},
-        };
-        *§
-         */
+        HttpSession session = request.getSession(false); // Passing false to prevent the creation of a new session if it doesn't exist
 
-
-
-
-        try {
-            Createdb.createdb();
-            Createtables.createtables();
-            InsertValues.insert();
-            data = Departement.getDepartmentDataList();
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
+        if (session != null && session.getAttribute("userId") != null) {
+            String userId = (String) session.getAttribute("userId");
+            try {
+                Createdb.createdb();
+                Createtables.createtables();
+                InsertValues.insert();
+                data = Departement.getDepartmentDataList();
+                request.setAttribute("departments", data);
+                request.getRequestDispatcher("/departement.jsp").forward(request, response);
+            } catch (ClassNotFoundException | SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            response.sendRedirect(request.getContextPath() + "/");
         }
-        request.setAttribute("departments", data);
 
-        request.getRequestDispatcher("/departement.jsp").forward(request, response);
     }
 
 }

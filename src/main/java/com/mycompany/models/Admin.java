@@ -22,7 +22,8 @@ public class Admin {
         conct.close();
     }
 
-    public static boolean checkLogin(String email, String password) throws SQLException {
+    public static boolean checkLogin(String email, String password) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         String Query = "SELECT * FROM admin WHERE email = ? AND password = ?";
         Connection conct = getConnection();
         PreparedStatement stmt = conct.prepareStatement(Query);
@@ -34,9 +35,21 @@ public class Admin {
         return result;
     }
 
+    public static int getAdminId(String email) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        String Query = "SELECT id_admin FROM admin WHERE email = ?";
+        Connection conct = getConnection();
+        PreparedStatement stmt = conct.prepareStatement(Query);
+        stmt.setString(1, email);
+        ResultSet resultSet = stmt.executeQuery();
+        resultSet.next();
+        int result = resultSet.getInt("id_admin");
+        conct.close();
+        return result;
+    }
+
     public static void main(String[] args) throws SQLException {
         //addAdmin("admin","admin","admin","admin");
-        System.out.println(Admin.checkLogin("admin", "hh"));
     }
 }
 

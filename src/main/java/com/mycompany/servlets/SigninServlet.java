@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -19,16 +20,21 @@ public class SigninServlet extends HttpServlet {
         String username = request.getParameter("login").trim();
         String password = request.getParameter("password").trim();
         try {
-
+            Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Username: " + username);
             System.out.println("Password: " + password);
             if (Admin.checkLogin(username, password)) {
+                HttpSession session = request.getSession();
+                int userId = Admin.getAdminId(username);
+                session.setAttribute("userId", userId);
                 response.sendRedirect(request.getContextPath() + "/departements");
             } else {
-                response.sendRedirect(request.getContextPath() + "/");
+                String errorMessage = "Invalid username or password";
+                request.setAttribute("errorMessage", errorMessage);
+                request.getRequestDispatcher("/").forward(request, response);
             }
         }
-        catch (SQLException e) {
+        catch (SQLException | ClassNotFoundException e) {
             response.sendRedirect(request.getContextPath() + "/");
             e.printStackTrace();
         }

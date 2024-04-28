@@ -10,6 +10,17 @@
 </head>
 <body class="bg-gray-100">
 <div class="flex h-screen">
+
+    <form action="logoutServlet" method="POST" class="absolute top-0 right-0 m-4">
+        <button type="submit" class="flex items-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 2a8 8 0 0 0-8 8c0 4.418 3.582 8 8 8s8-3.582 8-8a8 8 0 0 0-8-8zm3.293 3.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 1 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293z" clip-rule="evenodd" />
+            </svg>
+            Logout
+        </button>
+    </form>
+
+
     <div id="sidebar" class="w-64 bg-indigo-600 text-white flex flex-col justify-between fixed top-0 bottom-0 overflow-y-auto">
         <div class="flex items-center justify-center p-4">
             <img src="resources/management.png" alt="Logo" class="h-12 w-auto">
