@@ -135,7 +135,7 @@ public class Departement {
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, nom_Departement.trim().toUpperCase());
             stmt.setInt(2, id_localisation);
-            stmt.setInt(2, id_admin);
+            stmt.setInt(3, id_admin);
             stmt.executeUpdate();
             conct.commit();
             conct.close();

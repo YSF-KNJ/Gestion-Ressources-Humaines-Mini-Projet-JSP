@@ -25,7 +25,7 @@ public class SigninServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 int userId = Admin.getAdminId(username);
                 session.setAttribute("userId", userId);
-                response.sendRedirect(request.getContextPath() + "/departements");
+                response.sendRedirect(request.getContextPath() + "/postes");
             } else {
                 String errorMessage = "Invalid username or password";
                 request.setAttribute("errorMessage", errorMessage);

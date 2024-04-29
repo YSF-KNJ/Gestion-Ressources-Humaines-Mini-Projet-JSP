@@ -191,9 +191,10 @@ public class Localisation {
     }
 
 
-    public static void updateLocalisation(int id, String adresse, String ville) throws SQLException {
+    public static void updateLocalisation(int id, String adresse, String ville) throws SQLException, ClassNotFoundException {
         Connection conct = null;
         if (checkID(id)) {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             try {
                 String Query = "UPDATE localisation SET adresse = ?, ville = ? WHERE id_localisation = ?";
                 conct = MySQLConnector.getConnection();
@@ -214,15 +215,16 @@ public class Localisation {
         }
     }
 
-    public static void addLocalisation(String adresse, String ville) throws SQLException {
+    public static void addLocalisation(String adresse, String ville, int AdminId) throws SQLException {
         Connection conct = null;
         try {
-            String Query = "INSERT INTO localisation (adresse, ville) VALUES (?, ?);";
+            String Query = "INSERT INTO localisation (adresse, ville, id_admin) VALUES (?, ? , ?);";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, adresse.trim().toUpperCase());
             stmt.setString(2, ville.trim().toUpperCase());
+            stmt.setInt(3, AdminId);
             stmt.executeUpdate();
             conct.commit();
             conct.close();
@@ -269,14 +271,14 @@ public class Localisation {
         return bool;
     }
 
-    public static void addFromFile(FileInputStream file) throws SQLException {
+    public static void addFromFile(FileInputStream file, int AdminId) throws SQLException {
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] parts = line.split(",");
             String adresse = parts[0];
             String ville = parts[1];
-            addLocalisation(adresse, ville);
+            addLocalisation(adresse, ville, AdminId);
         }
     }
 
