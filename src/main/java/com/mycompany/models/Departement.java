@@ -12,33 +12,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Departement {
-    private final int id;
-    private final String nom_Departement;
-    private final int id_localisation;
 
-    public static void replaceDepartementWithNull(int id) {
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public int getId_localisation() {
-        return id_localisation;
-    }
-
-    public String getNom_Departement() {
-        return nom_Departement;
-    }
-
-    public Departement(int id_departement, String nom_Departement, int id_localisation) {
-        this.id = id_departement;
-        this.nom_Departement = nom_Departement;
-        this.id_localisation = id_localisation;
-    }
-
-    public static String[][] getDepartementData() throws SQLException {
+    public static String[][] getDepartementData() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         String[][] data = null;
         String query = "SELECT * FROM departement";
         Connection conct = MySQLConnector.getConnection();
@@ -68,7 +44,8 @@ public class Departement {
     }
 
 
-    public static List<String[]> getDepartmentDataList() throws SQLException {
+    public static List<String[]> getDepartmentDataList() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         List<String[]> data = new ArrayList<>();
         String query = "SELECT * FROM departement";
 
@@ -119,7 +96,8 @@ public class Departement {
     }
 
 
-    public static boolean checkID(int id) throws SQLException {
+    public static boolean checkID(int id) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         boolean bool = false;
         String Query = "SELECT COUNT(*) AS count FROM departement WHERE id_departement = ?";
         Connection conct = MySQLConnector.getConnection();
@@ -134,7 +112,8 @@ public class Departement {
         return bool;
     }
 
-    public static void deleteDepartement(int id) throws SQLException {
+    public static void deleteDepartement(int id) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         if (checkID(id)) {
             Connection conct = null;
             try {
@@ -157,7 +136,8 @@ public class Departement {
 
     }
 
-    public static void updateDepartement(int id, String nom_Departement, int id_localisation) throws SQLException {
+    public static void updateDepartement(int id, String nom_Departement, int id_localisation) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         if (checkID(id)) {
             Connection conct = null;
             try {
@@ -180,7 +160,8 @@ public class Departement {
         }
     }
 
-    public static void addDepartement(String nom_Departement, int id_localisation, int id_admin) throws SQLException {
+    public static void addDepartement(String nom_Departement, int id_localisation, int id_admin) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conct = null;
         try {
             String Query = "INSERT INTO departement (nom_Departement,id_localisation,id_admin) VALUES (? , ? , ?);";
@@ -201,7 +182,8 @@ public class Departement {
         }
     }
 
-    public static void replaceDepartements(int oldId, int newId) throws SQLException {
+    public static void replaceDepartements(int oldId, int newId) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conct = null;
         try {
             String Query = "UPDATE employes SET id_departement = ? WHERE id_departement = ?";
@@ -222,7 +204,8 @@ public class Departement {
         }
     }
 
-    public static boolean isDepartmentOccupied(int id) throws SQLException {
+    public static boolean isDepartmentOccupied(int id) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         boolean bool = false;
         String Query = "SELECT COUNT(*) AS count FROM employes WHERE id_departement = ?";
         Connection conct = MySQLConnector.getConnection();
@@ -237,7 +220,8 @@ public class Departement {
         return bool;
     }
 
-    public static void addFromFile(FileInputStream file, int id_admin) throws SQLException {
+    public static void addFromFile(FileInputStream file, int id_admin) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -249,7 +233,8 @@ public class Departement {
 
     }
 
-    public static void exportFileTxt(String fileName) throws IOException, SQLException {
+    public static void exportFileTxt(String fileName) throws IOException, SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
         String Query = "SELECT * FROM departement";
         Connection conct = MySQLConnector.getConnection();
@@ -265,7 +250,8 @@ public class Departement {
         conct.close();
     }
 
-    public static void exportFileXls(String fileName) throws SQLException, IOException {
+    public static void exportFileXls(String fileName) throws SQLException, IOException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         String Query = "SELECT * FROM departement";
         Connection conct = MySQLConnector.getConnection();
         PreparedStatement stmt = conct.prepareStatement(Query);
