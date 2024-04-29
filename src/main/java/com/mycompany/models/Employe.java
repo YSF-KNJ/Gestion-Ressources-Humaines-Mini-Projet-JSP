@@ -207,27 +207,6 @@ public class Employe {
     }
 
 
-    public static void replaceManager(int newManagerId, int oldManagerId) throws SQLException {
-        Connection conct = null;
-        try {
-            String query = "UPDATE employes SET id_manager = ? WHERE id_manager = ?";
-            conct = MySQLConnector.getConnection();
-            conct.setAutoCommit(false);
-            PreparedStatement stmt = conct.prepareStatement(query);
-            stmt.setInt(1, newManagerId);
-            stmt.setInt(2, oldManagerId);
-            stmt.executeUpdate();
-            conct.commit();
-            conct.close();
-            deleteEmploye(oldManagerId);
-        } catch (SQLException e) {
-            if (conct != null) {
-                conct.rollback();
-                throw e;
-            }
-        }
-    }
-
     public static int getSalaryAvg() {
         try {
             Connection conct = null;
@@ -307,6 +286,7 @@ public class Employe {
 
         return data;
     }
+
     public static List<String[]> getEmployeDataList() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         List<String[]> data = new ArrayList<>();

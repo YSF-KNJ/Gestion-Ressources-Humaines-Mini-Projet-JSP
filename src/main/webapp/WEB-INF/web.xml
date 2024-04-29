@@ -21,4 +21,13 @@
         <url-pattern>/deleteDepartment</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DeleteEmployeeServlet</servlet-name>
+        <servlet-class>com.mycompany.servlets.DeleteEmployeeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteEmployeeServlet</servlet-name>
+        <url-pattern>/deleteEmployee</url-pattern>
+    </servlet-mapping>
+
 </web-app>
