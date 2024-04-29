@@ -1,9 +1,9 @@
 package com.mycompany.servlets;
 
-import com.mycompany.models.Departement;
 import com.mycompany.models.Employe;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,21 +13,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeleteDepartmentServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String departmentId = request.getParameter("departmentId").trim();
-        int id = Integer.parseInt(departmentId);
+
+@WebServlet(name = "employeeServlet", value = "/employees")
+public class EmployeeServlet extends HttpServlet {
+    public static List<String[]> data = new ArrayList<>();
+
+    public void init() {
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
         HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("userId") != null) {
             String userId = String.valueOf(session.getAttribute("userId"));
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Employe.replaceDepartementWithNull(id);
-                Departement.deleteDepartement(id);
-                List<String[]> data = new ArrayList<>();
-                data = Departement.getDepartmentDataList(Integer.parseInt(userId));
-                request.setAttribute("departments", data);
-                response.sendRedirect(request.getContextPath() + "/departements");
+                data = Employe.getEmployeDataList(Integer.parseInt(userId));
+                request.setAttribute("employees", data);
+                request.getRequestDispatcher("/employee.jsp").forward(request, response);
             } catch (ClassNotFoundException | SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -35,6 +37,5 @@ public class DeleteDepartmentServlet extends HttpServlet {
         } else {
             response.sendRedirect(request.getContextPath() + "/");
         }
-
     }
 }

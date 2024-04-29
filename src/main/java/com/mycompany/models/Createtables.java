@@ -55,7 +55,6 @@ public class Createtables {
                 + "salaire DECIMAL(10, 2),"
                 + "id_poste INT,"
                 + "id_departement INT,"
-                + "id_manager INT,"
                 + "FOREIGN KEY (id_poste) REFERENCES poste(id_poste),"
                 + "FOREIGN KEY (id_departement) REFERENCES departement(id_departement),"
                 + "id_admin INT,"
