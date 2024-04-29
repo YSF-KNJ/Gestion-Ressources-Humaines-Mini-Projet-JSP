@@ -16,7 +16,7 @@ public class InsertValues {
         stmt.executeUpdate(insertToLocalisationTable);
 
 
-        String insertToDepartementTable = "INSERT INTO departement (nom_departement, id_localisation) VALUES ('IT Department', 4), ('Human Resources', 1), ('Marketing Department', 3), ('Finance Department', 2), ('Sales Department', 5);";
+        String insertToDepartementTable = "INSERT INTO departement (nom_departement, id_localisation,id_admin) VALUES ('IT Department', 4,1), ('Human Resources', 1,1), ('Marketing Department', 3,1), ('Finance Department', 2,1), ('Sales Department', 5,1);";
         stmt.executeUpdate(insertToDepartementTable);
 
         String insertToEmployesTable = "INSERT INTO employes (prenom, nom, email, telephone, salaire, id_poste, id_departement, id_manager) VALUES " +

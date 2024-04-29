@@ -1,7 +1,5 @@
 package com.mycompany.servlets;
 
-import com.mycompany.models.Createdb;
-import com.mycompany.models.Createtables;
 import com.mycompany.models.Departement;
 
 import javax.servlet.ServletException;
@@ -29,9 +27,7 @@ public class DepartementServlet extends HttpServlet {
         if (session != null && session.getAttribute("userId") != null) {
             String userId = String.valueOf(session.getAttribute("userId"));
             try {
-                Createdb.createdb();
-                Createtables.createtables();
-                data = Departement.getDepartmentDataList();
+                data = Departement.getDepartmentDataList(Integer.parseInt(userId));
                 request.setAttribute("departments", data);
                 request.getRequestDispatcher("/departement.jsp").forward(request, response);
             } catch (ClassNotFoundException | SQLException e) {

@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import static com.mycompany.models.MySQLConnector.getConnection;
 
 public class Admin {
-    public static void addAdmin(String firstName, String lastName, String email, String password) throws SQLException {
+    public static void addAdmin(String firstName, String lastName, String email, String password) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         String Query = "INSERT INTO admin (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
         Connection conct = getConnection();
         conct.setAutoCommit(false);
@@ -49,7 +50,7 @@ public class Admin {
     }
 
     public static void main(String[] args) throws SQLException {
-        addAdmin("admin","admin","admin","admin");
+        //addAdmin("admin","admin","admin","admin");
     }
 }
 

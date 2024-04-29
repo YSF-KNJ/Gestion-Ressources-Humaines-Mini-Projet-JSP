@@ -5,7 +5,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -120,9 +119,6 @@ public class Departement {
     }
 
 
-
-
-
     public static boolean checkID(int id) throws SQLException {
         boolean bool = false;
         String Query = "SELECT COUNT(*) AS count FROM departement WHERE id_departement = ?";
@@ -184,15 +180,16 @@ public class Departement {
         }
     }
 
-    public static void addDepartement(String nom_Departement, int id_localisation) throws SQLException {
+    public static void addDepartement(String nom_Departement, int id_localisation, int id_admin) throws SQLException {
         Connection conct = null;
         try {
-            String Query = "INSERT INTO departement (nom_Departement,id_localisation) VALUES (? , ? );";
+            String Query = "INSERT INTO departement (nom_Departement,id_localisation,id_admin) VALUES (? , ? , ?);";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, nom_Departement.trim().toUpperCase());
             stmt.setInt(2, id_localisation);
+            stmt.setInt(2, id_admin);
             stmt.executeUpdate();
             conct.commit();
             conct.close();
@@ -240,14 +237,14 @@ public class Departement {
         return bool;
     }
 
-    public static void addFromFile(FileInputStream file) throws SQLException {
+    public static void addFromFile(FileInputStream file, int id_admin) throws SQLException {
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] parts = line.split(",");
             String nom_departement = parts[0];
             int id_localisation = Integer.parseInt(parts[1]);
-            addDepartement(nom_departement, id_localisation);
+            addDepartement(nom_departement, id_localisation, id_admin);
         }
 
     }
@@ -259,7 +256,7 @@ public class Departement {
         PreparedStatement stmt = conct.prepareStatement(Query);
         ResultSet resultSet = stmt.executeQuery();
         while (resultSet.next()) {
-            String line = resultSet.getString("nom_departement") + "," + resultSet.getString("id_localisation");
+            String line = resultSet.getString("nom_departement") + "," + resultSet.getString("id_localisation") + "," + resultSet.getString("id_admin");
             writer.write(line);
             writer.newLine();
 
