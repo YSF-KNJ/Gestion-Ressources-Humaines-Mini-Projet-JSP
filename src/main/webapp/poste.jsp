@@ -96,10 +96,10 @@
                             Delete
                         </button>
                     </form>
-                    <form class="inline-block ml-2" action="editPost" method="post">
+                    <form class="inline-block ml-2" action="" method="post">
                         <input type="hidden" name="postId" value="<%= post[0] %>">
                         <button type="submit"
-                                class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition duration-300">
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition duration-300 opacity-50 cursor-not-allowed">
                             Edit
                         </button>
                     </form>

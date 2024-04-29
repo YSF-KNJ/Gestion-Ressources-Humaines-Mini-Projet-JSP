@@ -157,14 +157,15 @@ public class Poste {
         return data;
     }
 
-    public static void addPost(String title) throws SQLException {
+    public static void addPost(String title, int AdminId) throws SQLException {
         Connection conct = null;
         try {
-            String Query = "INSERT INTO poste (titre_poste) VALUES (?);";
+            String Query = "INSERT INTO poste (titre_poste, id_admin) VALUES (? , ?);";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, title.trim().toUpperCase());
+            stmt.setInt(2, AdminId);
             stmt.executeUpdate();
             conct.commit();
             conct.close();
@@ -258,11 +259,11 @@ public class Poste {
         return false;
     }
 
-    public static void addFromFile(FileInputStream file) throws SQLException {
+    public static void addFromFile(FileInputStream file, int AdminId) throws SQLException {
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            addPost(line.trim());
+            addPost(line.trim(), AdminId);
         }
     }
 

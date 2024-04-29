@@ -19,10 +19,9 @@ public class AddDepartmentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nom_departement = request.getParameter("nom_departement");
         int id_localisation = Integer.parseInt(request.getParameter("id_localisation"));
-        int id_admin = Integer.parseInt(request.getParameter("id_admin"));
 
         try {
-            System.out.println(nom_departement + " " + id_localisation + " " + id_admin);
+            System.out.println(nom_departement + " " + id_localisation);
         } catch (Exception e) {
             throw new ServletException("Error adding department", e);
         }
