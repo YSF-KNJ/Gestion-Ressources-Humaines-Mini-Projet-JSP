@@ -105,10 +105,10 @@ public class Employe {
         }
     }
 
-    public static void addEmploye(String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement, int id_manager) throws SQLException {
+    public static void addEmploye(String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement, int id_admin) throws SQLException {
         Connection conct = null;
         try {
-            String Query = "INSERT INTO employes (prenom, nom, email, telephone, salaire, id_poste, id_departement, id_manager) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String Query = "INSERT INTO employes (prenom, nom, email, telephone, salaire, id_poste, id_departement, id_admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
@@ -119,7 +119,7 @@ public class Employe {
             stmt.setDouble(5, salaire);
             stmt.setInt(6, id_poste);
             stmt.setInt(7, id_departement);
-            stmt.setInt(8, id_manager);
+            stmt.setInt(8, id_admin);
             stmt.executeUpdate();
             conct.commit();
             conct.close();

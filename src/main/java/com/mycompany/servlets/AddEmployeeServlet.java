@@ -1,6 +1,7 @@
 package com.mycompany.servlets;
 
 import com.mycompany.models.Departement;
+import com.mycompany.models.Employe;
 import com.mycompany.models.Poste;
 
 import javax.servlet.ServletException;
@@ -40,9 +41,7 @@ public class AddEmployeeServlet extends HttpServlet {
                 request.getRequestDispatcher("addEmployee.jsp").forward(request, response);
 
             } else {
-                System.out.println("Adding employee");
-                System.out.println(prenom + " " + nom + " " + email + " " + telephone + " " + salaire + " " + id_poste + " " + id_departement + " " + userId);
-                //Employee.addEmployee(prenom, nom, email, telephone, salaire, id_poste, id_departement, Integer.parseInt(userId));
+                Employe.addEmploye(prenom, nom, email, telephone, salaire, id_poste, id_departement, Integer.parseInt(userId));
                 response.sendRedirect("employees");
             }
         } catch (Exception e) {

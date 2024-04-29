@@ -65,8 +65,11 @@
                     <button class="inline-block m-3 p-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-md transition duration-300">
                         <a href="addPost" class="text-white">Add Post</a>
                     </button>
-                    <button class="inline-block m-3 p-2 bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-md transition duration-300">
-                        <a href="importPosts" class="text-white">Import Posts</a>
+                    <button class="inline-block m-3 p-2 bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-md transition duration-300 opacity-50 cursor-not-allowed">
+                        <a href="#" class="text-white">Import Posts</a>
+                    </button>
+                    <button class="inline-block m-3 p-2 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-md transition duration-300 opacity-50 cursor-not-allowed">
+                        <a href="#" class="text-white">Export Posts</a>
                     </button>
                 </div>
             </div>
