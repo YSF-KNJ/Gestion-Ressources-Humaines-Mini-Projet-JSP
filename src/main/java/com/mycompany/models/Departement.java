@@ -39,6 +39,27 @@ public class Departement {
         return data;
     }
 
+    public static void replaceLocalisationWithNull(int id_localisation) throws SQLException, ClassNotFoundException {
+
+        Connection conct = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String query = "UPDATE departement SET id_localisation = null WHERE id_localisation = ?";
+            conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
+            PreparedStatement stmt = conct.prepareStatement(query);
+            stmt.setInt(1, id_localisation);
+            stmt.executeUpdate();
+            conct.commit();
+            conct.close();
+        } catch (SQLException | ClassNotFoundException e) {
+            if (conct != null) {
+                conct.rollback();
+                throw e;
+            }
+        }
+    }
+
 
     public static boolean checkID(int id) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");

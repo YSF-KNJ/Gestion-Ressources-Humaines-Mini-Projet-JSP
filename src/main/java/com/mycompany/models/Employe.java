@@ -330,6 +330,26 @@ public class Employe {
         }
     }
 
+    public static void replacePosteWithNull(int id_poste) throws SQLException, ClassNotFoundException {
+
+        Connection conct = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String query = "UPDATE employes SET id_poste = null WHERE id_poste = ?";
+            conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
+            PreparedStatement stmt = conct.prepareStatement(query);
+            stmt.setInt(1, id_poste);
+            stmt.executeUpdate();
+            conct.commit();
+            conct.close();
+        } catch (SQLException | ClassNotFoundException e) {
+            if (conct != null) {
+                conct.rollback();
+                throw e;
+            }
+        }
+    }
 
     public static void deleteEmploye(int id) throws SQLException {
         Connection conct = null;
