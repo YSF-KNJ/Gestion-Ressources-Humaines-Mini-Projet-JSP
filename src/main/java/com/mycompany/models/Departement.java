@@ -12,62 +12,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Departement {
-
-    public static String[][] getDepartementData() throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        String[][] data = null;
-        String query = "SELECT * FROM departement";
-        Connection conct = MySQLConnector.getConnection();
-        PreparedStatement stmt = conct.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        ResultSet resultSet = stmt.executeQuery();
-        ResultSetMetaData metaData = resultSet.getMetaData();
-        int columnCount = metaData.getColumnCount();
-
-        int rowCount = 0;
-        if (resultSet.last()) {
-            rowCount = resultSet.getRow();
-            resultSet.beforeFirst();
-        }
-
-        data = new String[rowCount][columnCount];
-
-        int row = 0;
-        while (resultSet.next()) {
-            for (int i = 1; i <= columnCount; i++) {
-                data[row][i - 1] = resultSet.getString(i);
-            }
-            row++;
-        }
-
-        conct.close();
-        return data;
-    }
-
-
-    public static List<String[]> getDepartmentDataList() throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        List<String[]> data = new ArrayList<>();
-        String query = "SELECT * FROM departement";
-
-        try (Connection connection = MySQLConnector.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-
-            ResultSetMetaData metaData = resultSet.getMetaData();
-            int columnCount = metaData.getColumnCount();
-
-            while (resultSet.next()) {
-                String[] row = new String[columnCount];
-                for (int i = 1; i <= columnCount; i++) {
-                    row[i - 1] = resultSet.getString(i);
-                }
-                data.add(row);
-            }
-        }
-
-        return data;
-    }
-
     public static List<String[]> getDepartmentDataList(int AdminId) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         List<String[]> data = new ArrayList<>();
@@ -76,7 +20,7 @@ public class Departement {
         try (Connection connection = MySQLConnector.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setInt(1, AdminId); // Set the AdminId parameter in the query
+            statement.setInt(1, AdminId);
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 ResultSetMetaData metaData = resultSet.getMetaData();

@@ -8,6 +8,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Localisation {
@@ -87,6 +89,57 @@ public class Localisation {
             System.out.println("Une erreur s'est produite");
             return 0;
         }
+    }
+
+    public static List<String[]> getLocalisationDataList(int AdminId) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        List<String[]> data = new ArrayList<>();
+        String query = "SELECT * FROM localisation WHERE id_admin = ?";
+
+        try (Connection connection = MySQLConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, AdminId);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                ResultSetMetaData metaData = resultSet.getMetaData();
+                int columnCount = metaData.getColumnCount();
+
+                while (resultSet.next()) {
+                    String[] row = new String[columnCount];
+                    for (int i = 1; i <= columnCount; i++) {
+                        row[i - 1] = resultSet.getString(i);
+                    }
+                    data.add(row);
+                }
+            }
+        }
+
+        return data;
+    }
+
+    public static List<String[]> getLocalisationDataList() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        List<String[]> data = new ArrayList<>();
+        String query = "SELECT * FROM localisation";
+
+        try (Connection connection = MySQLConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            while (resultSet.next()) {
+                String[] row = new String[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    row[i - 1] = resultSet.getString(i);
+                }
+                data.add(row);
+            }
+        }
+
+        return data;
     }
 
 

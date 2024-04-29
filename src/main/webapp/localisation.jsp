@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deoartements Management</title>
+    <title>Localisations Management</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
@@ -30,13 +30,13 @@
                 </li>
             </a>
             <a href="localisations">
-                <li class="px-4 py-3 flex items-center justify-start space-x-4 hover:text-indigo-300">
+                <li class="px-4 py-3 flex items-center justify-start space-x-4 text-indigo-300">
                     <img src="resources/Localisation.png" alt="Localisations" class="h-8 w-auto">
                     <span class="text-lg">Localisations</span>
                 </li>
             </a>
             <a href="departements">
-                <li class="px-4 py-3 flex items-center justify-start space-x-4 text-indigo-300">
+                <li class="px-4 py-3 flex items-center justify-start space-x-4 hover:text-indigo-300">
                     <img src="resources/Departments.png" alt="Departments" class="h-8 w-auto">
                     <span class="text-lg">Departments</span>
                 </li>
@@ -56,16 +56,16 @@
     </div>
 
     <div id="content" class="flex-1 p-8 ml-64">
-        <h1 class="text-2xl font-bold flex justify-center items-center">Departments Management</h1>
+        <h1 class="text-2xl font-bold flex justify-center items-center">Localisations Management</h1>
 
         <div class="flex justify-center items-center">
             <div class="rounded-lg shadow-md p-6 m-3 w-2/3">
                 <div class="flex justify-center items-center">
                     <button class="inline-block m-3 p-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-md transition duration-300">
-                        <a href="addDepartment" class="text-white">Add Department</a>
+                        <a href="addLocalisation" class="text-white">Add Localisation</a>
                     </button>
                     <button class="inline-block m-3 p-2 bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-md transition duration-300">
-                        <a href="importDepartments" class="text-white">Import Departments</a>
+                        <a href="importLocalisations" class="text-white">Import Localisations</a>
                     </button>
                 </div>
             </div>
@@ -73,32 +73,32 @@
 
 
         <%
-            List<String[]> departments = (List<String[]>) request.getAttribute("departments");
-            for (String[] department : departments) {
+            List<String[]> localisations = (List<String[]>) request.getAttribute("localisations");
+            for (String[] localisation : localisations) {
         %>
 
         <div class="mt-8">
             <div class="bg-white rounded-lg shadow-md p-6 mb-4 flex justify-between items-center">
                 <div>
-                    <h2 class="text-lg font-semibold">Department ID: <%= department[0] %>
+                    <h2 class="text-lg font-semibold">Localisation ID: <%= localisation[0] %>
                     </h2>
-                    <p class="text-gray-600">Department Name: <%= department[1] %>
+                    <p class="text-gray-600">Address: <%= localisation[1] %>
                     </p>
-                    <p class="text-gray-600">Location ID: <%= department[2] %>
+                    <p class="text-gray-600">City: <%= localisation[2] %>
                     </p>
                 </div>
 
                 <div class="flex items-center">
-                    <form class="inline-block" action="deleteDepartment" method="post"
-                          onsubmit="return confirm('Are you sure you want to delete this department?');">
-                        <input type="hidden" name="departmentId" value="<%= department[0] %>">
+                    <form class="inline-block" action="deleteLocalisation" method="post"
+                          onsubmit="return confirm('Are you sure you want to delete this localisation?');">
+                        <input type="hidden" name="localisationId" value="<%= localisation[0] %>">
                         <button type="submit"
                                 class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md transition duration-300">
                             Delete
                         </button>
                     </form>
-                    <form class="inline-block ml-2" action="editDepartment" method="post">
-                        <input type="hidden" name="departmentId" value="<%= department[0] %>">
+                    <form class="inline-block ml-2" action="editLocalisation" method="post">
+                        <input type="hidden" name="localisationId" value="<%= localisation[0] %>">
                         <button type="submit"
                                 class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition duration-300">
                             Edit
@@ -116,4 +116,3 @@
 </div>
 </body>
 </html>
-
