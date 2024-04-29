@@ -56,11 +56,29 @@
     </div>
 
     <div id="content" class="flex-1 p-8 ml-64">
-        <h1 class="text-2xl font-bold">Departments Management</h1>
+        <h1 class="text-2xl font-bold flex justify-center items-center">Departments Management</h1>
+
+        <div class="flex justify-center items-center">
+            <div class="rounded-lg shadow-md p-6 m-3 w-2/3">
+                <div class="flex justify-center items-center">
+                    <form class="inline-block m-3 p-2" action="addDepartment" method="post">
+                        <button type="submit"
+                                class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-md transition duration-300">
+                            Add Department
+                        </button>
+                    </form>
+                    <form class="inline-block m-3 p-2" action="exportDepartments" method="post">
+                        <button type="submit"
+                                class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-md transition duration-300">
+                            Export
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 
         <%
-            // Accessing the array from the request attribute
             List<String[]> departments = (List<String[]>) request.getAttribute("departments");
             for (String[] department : departments) {
         %>
