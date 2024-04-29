@@ -13,7 +13,7 @@ public class Createtables {
                 + "id_admin INT NOT NULL PRIMARY KEY AUTO_INCREMENT,"
                 + "first_name VARCHAR(50),"
                 + "last_name VARCHAR(50),"
-                + "email VARCHAR(100),"
+                + "email VARCHAR(100) UNIQUE,"
                 + "password VARCHAR(255) NOT NULL"
                 + ")";
         stmt.executeUpdate(createAdminTable);

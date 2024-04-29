@@ -15,6 +15,7 @@ public class InitServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Createdb.createdb();
             Createtables.createtables();
         } catch (SQLException | ClassNotFoundException e) {

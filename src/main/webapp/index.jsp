@@ -14,7 +14,8 @@
         <h2 class="text-2xl font-semibold mb-4">Sign In</h2>
         <form action="signinServlet" method="POST">
             <% if (request.getAttribute("errorMessage") != null) { %>
-            <p class="text-red-500 mb-4"><%= request.getAttribute("errorMessage") %></p>
+            <p class="text-red-500 mb-4"><%= request.getAttribute("errorMessage") %>
+            </p>
             <% } %>
             <div class="mb-4">
                 <label for="login" class="block mb-1">Username</label>
@@ -22,9 +23,11 @@
             </div>
             <div class="mb-4">
                 <label for="password" class="block mb-1">Password</label>
-                <input required type="password" id="password" name="password" class="w-full px-3 py-2 border rounded-md">
+                <input required type="password" id="password" name="password"
+                       class="w-full px-3 py-2 border rounded-md">
             </div>
-            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Sign In</button>
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Sign In
+            </button>
         </form>
     </div>
 
@@ -32,9 +35,14 @@
     <div class="w-80 bg-white p-8 rounded-lg shadow-md mb-8 ml-3">
         <h2 class="text-2xl font-semibold mb-4">Sign Up</h2>
         <form action="signupServlet" method="POST">
+            <% if (request.getAttribute("emailErrorMessage") != null) { %>
+            <p class="text-red-500 mb-4"><%= request.getAttribute("emailErrorMessage") %>
+            </p>
+            <% } %>
             <div class="mb-4">
                 <label for="first_name" class="block mb-1">First Name</label>
-                <input required type="text" id="first_name" name="first_name" class="w-full px-3 py-2 border rounded-md">
+                <input required type="text" id="first_name" name="first_name"
+                       class="w-full px-3 py-2 border rounded-md">
             </div>
             <div class="mb-4">
                 <label for="last_name" class="block mb-1">Last Name</label>
@@ -42,13 +50,16 @@
             </div>
             <div class="mb-4">
                 <label for="signup_login" class="block mb-1">Username</label>
-                <input required type="text" id="signup_login" name="signup_login" class="w-full px-3 py-2 border rounded-md">
+                <input required type="text" id="signup_login" name="signup_login"
+                       class="w-full px-3 py-2 border rounded-md">
             </div>
             <div class="mb-4">
                 <label for="signup_password" class="block mb-1">Password</label>
-                <input required type="password" id="signup_password" name="signup_password" class="w-full px-3 py-2 border rounded-md">
+                <input required type="password" id="signup_password" name="signup_password"
+                       class="w-full px-3 py-2 border rounded-md">
             </div>
-            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Sign Up</button>
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Sign Up
+            </button>
         </form>
     </div>
 </div>
